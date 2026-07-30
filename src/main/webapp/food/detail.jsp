@@ -30,8 +30,8 @@
 					<td width="55%">${vo.address }</td>
 				</tr>
 				<tr>
-					<td width="15%" style="color: gray">전화번호</td>
-					<td width="55%">${vo.phone }</td>
+					<td width="15%" style="color: blue">전화번호</td>
+					<td width="55%" >${vo.phone }</td>
 				</tr>
 				<tr>
 					<td width="15%" style="color: gray">음식종류</td>
