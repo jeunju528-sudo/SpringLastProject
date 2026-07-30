@@ -10,7 +10,7 @@ jobs:
   # 모든 명령의 기본 작업 디렉토리 설정
     defaults:
       run:
-        working-directory: SpringLastProject
+        working-directory: .
     steps:
       # git에서 수행 war file 묶음, pom.xml파일의 version명으로 묶임
       - name: Checkout
