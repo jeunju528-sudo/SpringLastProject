@@ -33,5 +33,5 @@ jobs:
       # tomcat background로 실행
       - name: Tomcat start
         run: |
-          nohup /home/sist/apache-tomcat-9.0.120/bin/startup.sh > /dev/null 2>&1 < /dev/null &
+          setsid nohup /home/sist/apache-tomcat-9.0.120/bin/startup.sh > /dev/null 2>&1 < /dev/null &
           sleep 5
