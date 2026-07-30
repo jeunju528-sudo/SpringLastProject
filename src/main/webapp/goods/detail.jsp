@@ -30,7 +30,7 @@
 				<tr>
 					<td width="15%" style="color: gray">가격</td>
 					<td width="55%">${vo.goods_price }</td>
-				</tr>
+				</tr> 
 				<tr>
 					<td width="15%" style="color: gray">할인율</td>
 					<td width="55%">${vo.goods_discount }%</td>
