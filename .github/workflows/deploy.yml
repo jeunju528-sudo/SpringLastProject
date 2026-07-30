@@ -21,7 +21,8 @@ jobs:
       # server에서 수행
       - name: Stop Tomcat
         run: |
-          /home/sist/apache-tomcat-9.0.120/bin/shutdown.sh || true sleep 3
+          /home/sist/apache-tomcat-9.0.120/bin/shutdown.sh || true 
+          sleep 3
       - name: Remove old war
         run: |
           rm -rf /home/sist/apache-tomcat-9.0.120/webapps/SpringLastProject.war
