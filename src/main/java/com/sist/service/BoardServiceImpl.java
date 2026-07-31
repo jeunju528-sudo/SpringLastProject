@@ -68,11 +68,32 @@ public class BoardServiceImpl implements BoardService{
 		// 3. 내 글 넣기
 		vo.setGroup_id(parent.getGroup_id());
 		vo.setGroup_step(parent.getGroup_step()+1); // 출력 순서, 부모보다 하나 아래-맨 위에 
-		vo.setGroup_tab(parent.getGroup_step()+1); // 댓글 깊이, 부모거보다 한칸 밑에
+		vo.setGroup_tab(parent.getGroup_tab()+1); // 댓글 깊이, 부모거보다 한칸 밑에
 		vo.setRoot(parent_no);
 		boardMapper.boardReplyInsert(vo);
 		// 4. 부모글 depth 올리기
 		boardMapper.boardParentDepth(parent_no);
+	}
+
+	@Override
+	public String boardUpdate(BoardVO vo) {
+		String msg = ""; 
+		BoardVO dbVo = boardMapper.boardDetailData(vo.getNo());
+		
+		if(dbVo.getPwd().equals(vo.getPwd())) {
+			boardMapper.boardUpdate(vo);
+			msg = "OK";
+		}
+		else {
+			msg = "FAIL";
+		}
+		return msg;
+	}
+
+	@Override
+	public void boardDelete(int no) {
+		boardMapper.boardDelete(no);
+		
 	}
 
 }

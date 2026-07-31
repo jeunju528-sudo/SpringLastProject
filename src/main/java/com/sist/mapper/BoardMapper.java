@@ -2,6 +2,7 @@ package com.sist.mapper;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
@@ -20,7 +21,7 @@ public interface BoardMapper {
 	@Select("SELECT COUNT(*) FROM springreplyboard ")
 	public int boardRowCount();
 	
-	@Insert("INSERT INTO springreplyboard(no, name, subject, content, pwd, group_id "
+	@Insert("INSERT INTO springreplyboard(no, name, subject, content, pwd, group_id) "
 			+ "VALUES(srb_no_seq.nextval, #{name}, #{subject}, #{content}, #{pwd}, (SELECT NVL(MAX(group_id)+1,1) FROM springreplyboard))")
 	public void boardInsert(BoardVO vo);
 	
@@ -29,7 +30,7 @@ public interface BoardMapper {
 			+ "WHERE no=#{no} ")
 	public void boardHitIncrement(int no);
 	
-	@Select("SELECT no, name, subject, content, TO_CHAR(regdate, 'yyyy-mm-dd') as dbday, hit "
+	@Select("SELECT no, name, subject, content, TO_CHAR(regdate, 'yyyy-mm-dd') as dbday, pwd, hit, group_id, group_step, group_tab, root, depth "
 			+ "FROM springreplyboard "
 			+ "WHERE no = #{no}")
 	public BoardVO boardDetailData(int no);
@@ -47,8 +48,8 @@ public interface BoardMapper {
 	public void boardStepIncrement(@Param("group_id") int group_id, @Param("group_step") int group_step );	
 	
 	// 3. 내 데이터 입력하기
-	@Insert("INSERT INTO springreplyboard(no, name, subject, content, pwd, group_id, group_step, group_tab, root "
-			+ "VALUES(srb_no_seq.nextval, #{name}, #{subject}, #{content}, #{pwd}, #{group_id}, #{group_step}, #{group_tab}, #{root}")
+	@Insert("INSERT INTO springreplyboard(no, name, subject, content, pwd, group_id, group_step, group_tab, root) "
+			+ "VALUES(srb_no_seq.nextval, #{name}, #{subject}, #{content}, #{pwd}, #{group_id}, #{group_step}, #{group_tab}, #{root}) ")
 	public void boardReplyInsert(BoardVO vo);
 	
 	// 4. 상위 데이터에 갯수 update 하기
@@ -57,9 +58,17 @@ public interface BoardMapper {
 			+ "WHERE no = #{no}")
 	public void boardParentDepth(int no);
 	
-	
 	// 수정
+	@Update("UPDATE springreplyboard "
+			+ "SET name=#{name}, subject=#{subject}, content=#{content} "
+			+ "WHERE no=#{no} ")
+	public void boardUpdate(BoardVO vo);
+	
 	
 	// 삭제
+	@Delete("DELETE FROM springreplyboard "
+			+ "WHERE no = #{no}")
+	public void boardDelete(int no);
+	
 
 }

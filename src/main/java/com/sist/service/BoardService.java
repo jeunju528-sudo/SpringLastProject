@@ -17,4 +17,8 @@ public interface BoardService {
 	
 	public void boardReplyInsert(int parent_no, BoardVO vo);
 
+	public String boardUpdate(BoardVO vo);
+
+	public void boardDelete(int no);
+
 }
