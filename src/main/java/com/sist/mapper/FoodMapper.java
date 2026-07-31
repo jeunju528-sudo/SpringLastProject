@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.Update;
 
 import com.sist.vo.FoodVO;
 
@@ -32,5 +33,17 @@ public interface FoodMapper {
 			+ "FROM food "
 			+ "WHERE no = #{no}")
 	public FoodVO foodDetail(int no);
+	
+	@Update("UPDATE food "
+			+ "SET hit = hit+1 "
+			+ "WHERE no=#{no}")
+	public void foodHitIncrement(int no);
+	
+	@Select("SELECT no, name, hit, rownum "
+			+ "FROM (SELECT no, name, hit "
+			+ "FROM food "
+			+ "ORDER BY hit DESC) "
+			+ "WHERE rownum <= 7")
+	public List<FoodVO> foodHit7Data();
 	
 }

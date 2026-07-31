@@ -43,6 +43,12 @@ public class MainController {
 		if(endPage > totalpage)
 			endPage = totalpage;
 		
+		model.addAttribute("list", list);
+		model.addAttribute("curpage", curpage);
+		model.addAttribute("totalpage", totalpage);
+		model.addAttribute("startPage", startPage);
+		model.addAttribute("endPage", endPage);
+
 		List<FoodVO> cList = new ArrayList<FoodVO>();
 		Cookie[] cookies = request.getCookies();
 		if(cookies != null) {
@@ -57,13 +63,9 @@ public class MainController {
 			}
 		}
 		
-		model.addAttribute("list", list);
-		model.addAttribute("curpage", curpage);
-		model.addAttribute("totalpage", totalpage);
-		model.addAttribute("startPage", startPage);
-		model.addAttribute("endPage", endPage);
 		model.addAttribute("cList", cList);
 		model.addAttribute("size", cList.size());
+		
 		model.addAttribute("main_jsp", "../main/home.jsp");
 		return "main/main";
 	}

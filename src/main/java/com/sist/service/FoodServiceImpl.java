@@ -27,7 +27,13 @@ public class FoodServiceImpl implements FoodService {
 
 	@Override
 	public FoodVO foodDetail(int no) {
+		foodMapper.foodHitIncrement(no);
 		return foodMapper.foodDetail(no);
+	}
+
+	@Override
+	public List<FoodVO> foodHit7Data() {
+		return foodMapper.foodHit7Data();
 	}
 
 }
