@@ -15,21 +15,6 @@ h3 {
 	text-align: center;
 }
 </style>
-<script type="text/javascript">
-$(function(){
-	$('#deleteBtn').on('click',function(){
-		let no = $(this).attr('data-no')
-		let depth = $(this).attr('data-depth')
-		
-		if(depth > 0){
-			alert("답글이 있어 삭제할 수 없습니다.")
-			return
-		}
-		
-		location.href="../board/delete.do?no="+no
-	})
-})
-</script>
 </head>
 <body>
 	<div class="container">
@@ -61,7 +46,8 @@ $(function(){
 					<td colspan="4" class="text-right">
 						<a href="../board/reply.do?no=${vo.no }" class="btn btn-xs btn-warning">답변</a>
 						<a href="../board/update.do?no=${vo.no }" class="btn btn-xs btn-primary">수정</a>
-						<a class="btn btn-xs btn-danger" id="deleteBtn" data-no="${vo.no }" data-depth="${vo.depth }">삭제</a>
+						<!--  <a class="btn btn-xs btn-danger" id="deleteBtn" data-no="${vo.no }" data-depth="${vo.depth }">삭제</a> -->
+						<a href="../board/delete.do?no=${vo.no }" class="btn btn-xs btn-danger">삭제</a>
 						<a href="../board/list.do" class="btn btn-xs btn-info">목록</a>
 					</td>
 				</tr>

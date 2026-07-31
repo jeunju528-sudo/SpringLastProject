@@ -110,11 +110,21 @@ public class BoardController {
 		
 		return "redirect:../board/list.do";
 	}
-	
+	/*
 	@GetMapping("board/delete.do")
 	public String board_delete(int no) {
 		boardService.boardDelete(no);
 				
 		return "redirect:../board/list.do";
 	}
+	*/
+	@GetMapping("board/delete.do")
+	public String board_delete(int no, Model model) {
+		
+		model.addAttribute("no", no);
+		model.addAttribute("main_jsp", "../board/delete.jsp");
+		
+		return "main/main";
+	}
+	
 }

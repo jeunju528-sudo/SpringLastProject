@@ -66,9 +66,27 @@ public interface BoardMapper {
 	
 	
 	// 삭제
+	@Select("SELECT root, depth FROM springreplyboard "
+			+ "WHERE no=#{no}")
+	public BoardVO boardInfoData(int no);
+	
+	@Select("SELECT pwd FROM springreplyboard "
+			+ "WHERE no=#{no}")
+	public String boardGetPassword(int no);
+	// 답변이 있는 경우
+	@Update("UPDATE springreplyboard "
+			+ "SET subject=#{subject}, content = #{content} "
+			+ "WHERE no=#{no}")
+	public void boardMsgUpdate(BoardVO vo);
+	// 답변이 없는 경우
 	@Delete("DELETE FROM springreplyboard "
 			+ "WHERE no = #{no}")
 	public void boardDelete(int no);
+	
+	@Update("UPDATE springreplyboard "
+			+ "SET depth=depth-1 "
+			+ "WHERE no=#{no}")
+	public void boardDepthDecrement(int no);
 	
 
 }

@@ -19,6 +19,6 @@ public interface BoardService {
 
 	public String boardUpdate(BoardVO vo);
 
-	public void boardDelete(int no);
+	public boolean boardDelete(int no, String pwd);
 
 }
